@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .concatenate{
+        display: flex;
+        width: 100%;
+        height: 500px;
+        position: fixed;
+        top: 25px;
+        right: 18px;
+        overflow-x: hidden;
+        z-index: 3;
+    }
+    .concatenate .lement{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 5px;
+        border-radius: 10px;
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        overflow-x: hidden;
+        transform: translateX(calc(100% + 30px));
+        transition: all .3s ease-in-out;
+        border-left: 4px solid #D2691E;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    }
+    .concatenate .lement.tre{
+        transform: translateX(0);
+    }
+    .concatenate .lement span{
+        position: absolute;
+        border-bottom: 3px solid #D2691E;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+    }
+    .concatenate .lement span.tre{
+        animation:progress 5s linear;
+    }
+    @keyframes progress{
+        100%{
+            right: 100%;
+        }
+    }
+    .concatenate .lement i{
+        font-size: 23px;
+        color:#D2691E;
+        background: #fff;
+        border-radius: 50%;
+    }
+    .concatenate .lement .centaine{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+    }
+    .concatenate .lement .centaine p{
+        color: #D2691E;
+        font-weight: bold;
+        font-size: 17px;
+
+    }
+    .concatenate .lement .centaine small{
+        color: #1e1e1e;
+        font-size: 15px;
+    }
+</style>
+<body>
+    <div class="concatenate">
+        <div class="lement">
+            <i class='bx bxs-info-circle'></i>
+            <div class="centaine">
+                <p>Succès</p>
+                <small>Etude de cas de maitre maurice</small>
+                </div>
+            <span></span>
+        </div>
+        <button>client</button>
+    </div>
+
+
+
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+
+</body>
+<script>
+    const button = document.querySelector('button');
+    function notifications(){
+        const element = document.querySelector('.lement');
+        const espan = document.querySelector('span');
+        element.classList.toggle('tre');
+        espan.classList.toggle('tre');
+        setTimeout(() => {
+            element.classList.remove('tre');
+            espan.classList.remove('tre');
+        }, 5000);
+    }
+</script>
+</html>

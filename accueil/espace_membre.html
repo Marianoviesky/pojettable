@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<style>
+   
+    .member{
+        position: absolute;
+        height: 400px;
+        width: 350px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      border-radius: 12px 12px 0px 0px;
+        gap: 17px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        z-index: -1;
+    }
+    .member .profil_asp{
+        height: 80px;
+        width: 80px;
+        border-radius: 50%;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    }
+    .member .access_button{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .member .access_button button{
+        padding: 10px;
+        border-radius: 10px;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        gap: 10px;
+        background: #D2691E;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    }
+    .member .access_button button:hover{
+        background: rgba(210, 105, 30,0.8);
+    }
+    .div-container {
+        position: absolute;
+      height: 100%;
+      width: 100%;
+      background-color: #f2f2f2;
+      border-radius: 12px 12px 0px 0px;
+      display: none;
+    }
+    .ess{
+        display: flex;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        text-align: center;
+        gap: 17px;
+        width: 100%;
+        height: 45px;
+         border-radius: 12px 12px 0px 0px;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    }
+    .ess button{
+        background: #D2691E;
+        display: flex;
+        align-items: center;
+        border: none;
+        border-radius: 10px;
+        padding: 3px;
+        color: #fff;
+    }
+
+    /* MESSAGE SPACE  */
+    .messages{
+        flex-direction: column;
+    }
+    
+    /* ZONE MESSAGES  */
+    .messages .message_area{
+        background: #ccc;
+        height: 100%;
+        overflow-y: scroll;
+        padding: 3px;
+    }
+    .messages .message_area::-webkit-scrollbar{
+        width: 0;
+    }
+    .messages .message_area img{
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+    }
+    .messages .message_area .disqq{
+        display: grid;
+    }
+    .messages .message_area .disqq span{
+        font-size: 10px;
+    }
+    .messages .message_area p{
+        max-width: 220px;
+        padding: 5px;
+        background: #ccc;
+        word-wrap: break-word;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    }
+    .messages .message_area :is(.incoming_mess,.outgoing_mess){
+        display: flex;
+        align-items: flex-end;
+        gap: 3px;
+    }
+
+    .messages .message_area .incoming_mess{
+        justify-content: flex-start;
+    }
+    .messages .message_area .incoming_mess p{
+        background: #fff;
+        border-radius: 5px 5px 5px 0;
+    }
+    .messages .message_area .outgoing_mess{
+        justify-content: flex-end;
+    }
+    .messages .message_area .outgoing_mess p{
+        background: #D2691E;
+        color: #fff;
+        border-radius: 5px 5px 0 5px;
+    }
+
+    /* FIN ZONE MESSAGES  */
+    .messages form{
+        padding: 2px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 45px;
+        gap: 8px;
+    }
+    .messages form input{
+        padding: 5px;
+        width: 100%;
+        outline: none;
+        border: none;
+        border-radius: 5px;
+        font-size: 15px;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    }
+    .messages form button{
+        font-size: 22px;
+        border-radius: 0 18px 18px 0;
+        border: none;
+        width: 45px;
+        height: 30px;
+        color: #D2691E;
+        background: #ccc;
+        transition: all .3s ease-in-out;
+    }
+    .messages form button:hover{
+        background: #D2691E;
+        color: #fff;
+    }
+    /* END MESSAGE AREA  */
+
+
+    /* NOTIFICATION AREA  */
+    .notification{
+        flex-direction: column;
+        text-align: center;
+    }
+    .part{
+        display: none;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        height: 100%;
+    }
+    .notification b{
+        margin-top: 10px;
+    }
+    .notification .center_notification{
+        padding: 5px;
+        margin-top: 25px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        overflow-y: scroll;
+    }
+    .notification .center_notification::-webkit-scrollbar{
+        width: 0;
+    }
+    .notification .center_notification img{
+        height: 100px;
+        width: 90px;
+    }
+    .notification .center_notification p{
+        height: 100px;
+        width: 100%;
+        overflow: hidden;
+    }
+    .notification .center_notification a{
+        padding: 8px;
+        text-align: center;
+        text-decoration: none;
+        color: #D2691E;
+        background: #cccE;
+        border-radius: 15px;
+        transition: all .3s ease-in-out;
+    }
+    .notification .center_notification a:hover{
+        background: #D2691E;
+        color: #fff;
+    }
+    .notification .center_notification a:active{
+        background: #ccc;
+    }
+
+
+
+    /* END NOTIFICATION AREA  */
+
+    /* ESPACE CLIENT  */
+
+    .emprunt_zone{
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+    }
+    .emprunt_zone .le_res{
+        padding: 5px;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+    .emprunt_zone .espace_desti{
+        display: flex;
+        gap: 5px;
+        padding-top: 10px;
+        width: 100%;
+    }
+    .emprunt_zone .espace_desti button{
+        border-radius: 5px 5px 0 0;
+        color: #fff;
+        background: #D2691E;
+        border: none;
+        width: 100%;
+    }
+    .emprunt_zone .espace_livre_emprunt{
+       display: grid;
+       height: 317px;
+       overflow-y: scroll;
+    }
+    .emprunt_zone .espace_livre_emprunt::-webkit-scrollbar{
+        width: 0;
+    }
+    .emprunt_zone .espace_livre_emprunt .les_livres_ep{
+        background: #ccc;
+        text-align: center;
+        display: flex;
+        gap: 5px;
+        align-items: center;
+        margin-top: 5px;
+        padding-top: 5px;
+        padding-left: 2px;
+        padding-bottom: 5px;
+        width: 100%;
+        height: 75px;
+        overflow-y: hidden;
+    }
+    .emprunt_zone .espace_livre_emprunt .les_livres_ep :is(img,i,p){
+        overflow: hidden;
+        width: 100%;
+    }
+    .emprunt_zone .espace_livre_emprunt .les_livres_ep img{
+        height: 72px;
+    }
+    /* FIN ESPACE CLIENT  */
+
+    button{
+        cursor: pointer;
+    }
+    .elipse{
+        padding: 10px;
+        border: 1px solid #ccc;
+        cursor: pointer;
+        z-index: 1;
+    }
+    .elipse .span{
+        position: absolute;
+        visibility: hidden;
+        transition: all .3ss ease-in-out;
+    }
+    .elipse:hover > .span{
+        visibility: visible;
+        cursor: pointer;
+    }
+</style>
+<body>
+    <div class="member">
+        <img src="../admin/admin.jpeg" alt="" class="profil_asp">
+        <h3>Bonjour Mr Enrick</h3>
+
+        <!-- message_area -->
+        <div class="div-container messages" id="div1" >
+            <div class="ess">
+                <button onclick="member('div1')" class="bx bx-x"></button>
+                <p>Messages</p>
+            </div>
+            <div class="message_area">
+                <div class="incoming_mess">
+                    <div class="disqq">
+                        <img src="../admin/admin.jpeg" alt="">
+                        <span>Admin</span>
+                    </div><p>lorejkescedfeerdrgervdfreeddrxxxxxjrrhvuihrfihviri</p>
+                </div>
+                <div class="outgoing_mess">
+                    <p>lorejkejrrhvuihrfihviri</p>
+                    <div class="disqq"><img src="../admin/admin.jpeg" alt=""><span>Admin</span></div>
+                </div>
+                <div class="incoming_mess">
+                    <div class="disqq">
+                        <img src="../admin/admin.jpeg" alt="">
+                        <span>Admin</span>
+                    </div><p>lorejkejrrhvuihrfihviri</p>
+                </div>
+                <div class="outgoing_mess">
+                    <p>lorejkejrrhvuihrfihviri</p>
+                    <div class="disqq"><img src="../admin/admin.jpeg" alt=""><span>Admin</span></div>
+                </div>
+                <div class="incoming_mess">
+                    <div class="disqq">
+                        <img src="../admin/admin.jpeg" alt="">
+                        <span>Admin</span>
+                    </div><p>lorejkejrrhvuihrfihviri</p>
+                </div>
+                <div class="outgoing_mess">
+                    <p>lorejkejrrhvuihrfihviri</p>
+                    <div class="disqq"><img src="../admin/admin.jpeg" alt=""><span>Admin</span></div>
+                </div>
+                <div class="incoming_mess">
+                    <div class="disqq">
+                        <img src="../admin/admin.jpeg" alt="">
+                        <span>Admin</span>
+                    </div><p>lorejkejrrhvuihrfihviri</p>
+                </div>
+                <div class="outgoing_mess">
+                    <p>lorejkejrrhvuihrfihviri</p>
+                    <div class="disqq"><img src="../admin/admin.jpeg" alt=""><span>Admin</span></div>
+                </div>
+                <div class="incoming_mess">
+                    <div class="disqq">
+                        <img src="../admin/admin.jpeg" alt="">
+                        <span>Admin</span>
+                    </div><p>lorejkejrrhvuihrfihviri</p>
+                </div>
+                <div class="incoming_mess">
+                    <div class="disqq">
+                        <img src="../admin/admin.jpeg" alt="">
+                        <span>Admin</span>
+                    </div><p>lorejkejrrhvuihrfihviri</p>
+                </div>
+                <div class="incoming_mess">
+                    <div class="disqq">
+                        <img src="../admin/admin.jpeg" alt="">
+                        <span>Admin</span>
+                    </div><p>lorejkejrrhvuihrfihviri</p>
+                </div>
+                <div class="incoming_mess">
+                    <div class="disqq">
+                        <img src="../admin/admin.jpeg" alt="">
+                        <span>Admin</span>
+                    </div><p>lorejkejrrhvuihrfihviri</p>
+                </div>
+                <div class="incoming_mess">
+                    <div class="disqq">
+                        <img src="../admin/admin.jpeg" alt="">
+                        <span>Admin</span>
+                    </div><p>lorejkejrrhvuihrfihviri</p>
+                </div>
+                <div class="incoming_mess">
+                    <div class="disqq">
+                        <img src="../admin/admin.jpeg" alt="">
+                        <span>Admin</span>
+                    </div><p>lorejkejrrhvuihrfihviri</p>
+                </div>
+                <div class="incoming_mess">
+                    <div class="disqq">
+                        <img src="../admin/admin.jpeg" alt="">
+                        <span>Admin</span>
+                    </div><p>lorejkejrrhvuihrfihviri</p>
+                </div>
+                <div class="outgoing_mess">
+                    <p>lorejkejrrhvuihrfihviri</p>
+                    <div class="disqq"><img src="../admin/admin.jpeg" alt=""><span>Admin</span></div>
+                </div>
+                <div class="incoming_mess">
+                    <div class="disqq">
+                        <img src="../admin/admin.jpeg" alt="">
+                        <span>Admin</span>
+                    </div><p>lorejkejrrhvuihrfihviri</p>
+                </div>
+                <div class="outgoing_mess">
+                    <p>lorejkejrrhvuihrfihviri</p>
+                    <div class="disqq"><img src="../admin/admin.jpeg" alt=""><span>Admin</span></div>
+                </div>
+                <div class="incoming_mess">
+                    <div class="disqq">
+                        <img src="../admin/admin.jpeg" alt="">
+                        <span>Admin</span>
+                    </div><p>lorejkejrrhvuihrfihviri</p>
+                </div>
+                <div class="outgoing_mess">
+                    <p>lorejkejrrhvuihrfihviri</p>
+                    <div class="disqq"><img src="../admin/admin.jpeg" alt=""><span>Admin</span></div>
+                </div>
+            </div>
+                <form action="" method="post">
+                    <input type="text" placeholder="Votre message...">
+                    <button class="bx bxs-send" type="submit"></button>
+                </form>
+        </div>
+        
+        <!-- end message_area -->
+
+        <!-- Notifications area -->
+          <div class="div-container notification" id="div2">
+            <div class="ess">
+                <button onclick="member('div2')" class="bx bx-x"></button><h3>Notifications</h3>
+                </div>
+                <div class="part">
+                    <h2>Pas de messages</h2>
+                </div>
+                <b>Aujourd'hui</b>
+                <div class="center_notification">
+                    <img src="../php/bookdom.jpg" alt="">
+                    <strong>La ville céleste</strong>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odit quia maxime delectus? Aliquid ut laudantium sint vel modi reiciendis eos sequi nesciunt iste exercitationem, laboriosam ipsam. Id voluptatem perspiciatis quidem.</p>
+                    <a href="">Decouvrir</a>
+                </div>
+          </div>
+          
+        <!-- end Notifications area -->
+        
+
+        <!-- Member space -->
+          <div class="div-container emprunt_zone" id="div3">
+            <div class="ess">
+                <button onclick="member('div3')" class="bx bx-x"></button><h3>Espace emprunt</h3>
+            </div>
+            <div class="le_res">
+                <div class="espace_desti">
+                    <button>Livre</button>
+                    <button>Nom</button>
+                    <button>Date E.P</button>
+                    <button>Date Retour</button>
+                </div>
+                <div class="espace_livre_emprunt">
+                    <div class="les_livres_ep">
+                        <img src="../php/bookdom.jpg" alt="">
+                        <i>La ville célesteefiuzeguifiu</i>
+                        <p>17/05/2023</p>
+                        <p>22/05/2023</p>
+                    </div>
+                    <div class="les_livres_ep">
+                        <img src="../php/bookdom.jpg" alt="">
+                        <i>La ville célesteefiuzeguifiu</i>
+                        <p>17/05/2023</p>
+                        <p>22/05/2023</p>
+                    </div>
+                    <div class="les_livres_ep">
+                        <img src="../php/bookdom.jpg" alt="">
+                        <i>La ville célesteefiuzeguifiu</i>
+                        <p>17/05/2023</p>
+                        <p>22/05/2023</p>
+                    </div>
+                    <div class="les_livres_ep">
+                        <img src="../php/bookdom.jpg" alt="">
+                        <i>La ville célesteefiuzeguifiu</i>
+                        <p>17/05/2023</p>
+                        <p>22/05/2023</p>
+                    </div>
+                    <div class="les_livres_ep">
+                        <img src="../php/bookdom.jpg" alt="">
+                        <i>La ville célesteefiuzeguifiu</i>
+                        <p>17/05/2023</p>
+                        <p>22/05/2023</p>
+                    </div>
+                    <div class="les_livres_ep">
+                        <img src="../php/bookdom.jpg" alt="">
+                        <i>La ville célesteefiuzeguifiu</i>
+                        <p>17/05/2023</p>
+                        <p>22/05/2023</p>
+                    </div>
+                    <div class="les_livres_ep">
+                        <img src="../php/bookdom.jpg" alt="">
+                        <i>La ville célesteefiuzeguifiu</i>
+                        <p>17/05/2023</p>
+                        <p>22/05/2023</p>
+                    </div>
+                    <div class="les_livres_ep">
+                        <img src="../php/bookdom.jpg" alt="">
+                        <i>La ville célesteefiuzeguifiu</i>
+                        <p>17/05/2023</p>
+                        <p>22/05/2023</p>
+                    </div>
+                    
+                   
+                    
+                </div>
+            </div>
+          </div>
+          
+          <!-- end Member space -->
+
+          <!-- BUTTON -->
+           <div class="access_button">
+
+            <button onclick="member('div1')" class="bx bxs-message-rounded" >Messages</button>
+            <button onclick="member('div2')" class="bx bxs-bell">Notifications</button>
+            <button onclick="member('div3')" class="bx bxs-group">Espace Client</button>
+
+           </div>
+          
+      <!-- end  -->
+    </div>
+      <!-- END  -->
+
+       <div class="elipse">i <span class="span">Plays as meme</span></div>
+      
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+</body>
+<script>
+
+
+
+
+function member(divId) {
+      let div = document.getElementById(divId);
+      if (div.style.display === "none") {
+        div.style.display = "flex";
+      } else {
+        div.style.display = "none";
+      }
+    }
+</script>
+
+</html>

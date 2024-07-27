@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Box UI Design</title>
+    <link rel="stylesheet" href="mestyle.css" />
+
+    <!-- Import this CDN to use icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
+    />
+  </head>
+
+  <body>
+    <!-- Main container -->
+    <div class="container">
+      <!-- msg-header section starts -->
+      <div class="msg-header">
+        <div class="container1">
+          <img src="user1.png" class="msgimg" />
+          <div class="active">
+            <p>User name</p>
+          </div>
+        </div>
+      </div>
+      <!-- msg-header section ends -->
+
+      <!-- Chat inbox  -->
+      <div class="chat-page">
+        <div class="msg-inbox">
+          <div class="chats">
+            <!-- Message container -->
+            <div class="msg-page">
+              <!-- Incoming messages -->
+
+              <div class="received-chats">
+                <div class="received-chats-img">
+                  <img src="user2.png" />
+                </div>
+                <div class="received-msg">
+                  <div class="received-msg-inbox">
+                    <p>
+                      Hi !! This is message from Riya . Lorem ipsum, dolor sit
+                      amet consectetur adipisicing elit. Non quas nemo eum,
+                      earum sunt, nobis similique quisquam eveniet pariatur
+                      commodi modi voluptatibus iusto omnis harum illum iste
+                      distinctio expedita illo!
+                    </p>
+                    <span class="time">18:06 PM | July 24</span>
+                  </div>
+                </div>
+              </div>
+              <!-- Outgoing messages -->
+              <div class="outgoing-chats">
+                <div class="outgoing-chats-img">
+                  <img src="user1.png">
+                </div>
+                <div class="outgoing-msg">
+                  <div class="outgoing-chats-msg">
+                    <p class="multi-msg">
+                      Hi riya , Lorem ipsum dolor sit amet consectetur
+                      adipisicing elit. Illo nobis deleniti earum magni
+                      recusandae assumenda.
+                    </p>
+                    <p class="multi-msg">
+                      Lorem ipsum dolor sit amet consectetur.
+                    </p>
+
+                    <span class="time">18:30 PM | July 24</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="received-chats">
+                <div class="received-chats-img">
+                  <img src="user2.png" />
+                </div>
+                <div class="received-msg">
+                  <div class="received-msg-inbox">
+                    <p class="single-msg">
+                      Hi !! This is message from John Lewis. Lorem ipsum, dolor
+                      sit amet consectetur adipisicing elit. iste distinctio
+                      expedita illo!
+                    </p>
+                    <span class="time">18:31 PM | July 24</span>
+                  </div>
+                </div>
+              </div>
+              <div class="outgoing-chats">
+                <div class="outgoing-chats-img">
+                  <img src="user1.png" />
+                </div>
+                <div class="outgoing-msg">
+                  <div class="outgoing-chats-msg">
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Velit, sequi.
+                    </p>
+
+                    <span class="time">18:34 PM | July 24</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- msg-bottom section -->
+
+          <form class="msg-bottom" method="post" action="" enctype="multipart/form-data">
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Write message..."
+                name="msg"
+              />
+
+              <span class="input-group-text send-icon">
+                <button class="effectif" value="12" name="id_user" hidden></button>
+                <input type="file" id="file" name="img" hidden>
+               <label for="file"><i class="bi bi-image"></i></label> 
+                <i class="bi bi-send"></i>
+              </span>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+
+   <script>
+    let send = document.querySelector('.bi-send');
+    let effectif = document.querySelector('.effectif');
+    let formable = document.querySelector('form');
+    let chats = document.querySelector('.chats');
+
+
+    formable.onsubmit=(e)=>{
+      e.preventDefault();
+    }
+
+
+    send.addEventListener("click",()=>{
+      let xhr = new XMLHttpRequest();
+      xhr.open("POST", 'ess.php', true);
+      xhr.onload = ()=>{
+      if(xhr.readyState === XMLHttpRequest.DONE){
+        if(xhr.status === 200){
+            let data = xhr.response;
+            console.log(data);          
+        }
+    }
+  }
+  let form = new FormData(formable);
+  xhr.send(form);
+    })
+
+    function  robot() {
+      let elt = effectif.value;
+      let xhr = new XMLHttpRequest();
+      xhr.open("POST", 'display.php', true);
+      xhr.onload = ()=>{
+      if(xhr.readyState === XMLHttpRequest.DONE){
+        if(xhr.status === 200){
+            let data = xhr.response;
+            chats.innerHTML=data;
+        }
+    }
+  }
+  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhr.send("elt=" + elt);
+}
+robot();
+   </script>
+</html>
+
+

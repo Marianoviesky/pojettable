@@ -1,0 +1,83 @@
+
+    /* #ffee80 */
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 10px;
+        height: 100vh;
+        background: url(../Library\ Buildings\ Books\ Bookshelf\ Man\ Made\ Wallpaper.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position-y: center;
+    }
+    .container{
+        width: 400px;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+        padding-bottom: 15px;
+        border-radius: 15px;
+        background: #fff;
+    }
+    :is(.container,form){
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+    .container{
+        justify-content: center;
+        align-items: center;
+    }
+    .container form{
+        align-items: center;
+        justify-content: center;
+         gap: 25px;
+         width: 100%;
+    }
+    .container form :is(button,input){
+        width: 70%;
+    }
+    .container form input{
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        outline: none;
+    }
+    .container form button{
+        padding: 12px;
+        border-radius: 8px;
+        border: none;
+        color: #fff;
+        background: #D2691E;
+        cursor: pointer;
+        transition: all .3s ease-in-out;
+        box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    }
+    .container form button:hover{
+        color: #fff;
+        background: rgba(210, 105, 30,0.8);
+    }
+    .errorText{
+        padding: 10px;
+        background: #ccc;
+        display: none;
+        width: 80%;
+        border-radius: 10px;
+        margin: 10px
+    }
+    label{
+        position: relative;
+        cursor: pointer;
+        font-size: 30px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 35px;
+        width: 35px;
+        padding: 5px;
+        border-radius: 50%;
+        background: #ccc;
+        color: #1e1e1e;
+    }

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Se connecter</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="shortcut icon" href="../php/bookdom.jpg" type="image/x-icon">
+</head>
+<style>
+    
+    /* #ffee80 */
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 10px;
+        height: 100vh;
+        background: url(adminbg.webp);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position-y: center;
+    }
+    .container{
+        width: 400px;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+        padding-bottom: 25px;
+        border-radius: 15px;
+        background: #ccc;
+    }
+    :is(.container,form){
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+    .container{
+        justify-content: center;
+        align-items: center;
+    }
+    .container form{
+        align-items: center;
+        justify-content: center;
+         gap: 30px;
+         width: 100%;
+    }
+    .container form :is(button,input){
+        width: 70%;
+    }
+    .container form input{
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        outline: none;
+    }
+    .container form button{
+        padding: 12px;
+        border-radius: 8px;
+        border: none;
+        color: #fff;
+        background: #009879;
+        cursor: pointer;
+        transition: all .3s ease-in-out;
+        box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    }
+    .container form button:hover{
+        color: #fff;
+        background: rgba(0, 152, 121,0.7);
+    }
+    .errorText{
+        padding: 10px;
+        background: #ccc;
+        display: none;
+        width: 80%;
+        border-radius: 10px;
+        margin: 10px
+    }
+
+    h1{
+        text-align: center;
+        color: #fff;
+        font-weight: bold;
+        font-size: 45px;
+    }
+    i{
+        font-size: 100px;
+        height: 100px;
+        width: 100px;
+        border-radius: 50%;
+    }
+</style>
+<body>
+    <h1>BOOKDOM</h1>
+    <div class="container">
+        <i class="bx bxs-user"></i>
+        <h2>Admin</h2>
+        <div class="errorText">logan</div>
+        <form action="" method="post">
+            <input type="number" placeholder="Votre identifiant" name="id">
+            <input type="password" placeholder="Mot de passe" name="pswd">
+            <button type="submit">Connexion</button>
+        </form>
+    </div>
+
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+</body>
+<script>
+    const form = document.querySelector("form");
+const login = document.querySelector("button");
+let errorText = document.querySelector('.errorText')
+
+form.onsubmit = (e)=>{
+    e.preventDefault();
+}
+
+login.onclick = ()=>{
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", '../php/admin.php', true);
+    xhr.onload = ()=>{
+      if(xhr.readyState === XMLHttpRequest.DONE){
+          if(xhr.status === 200){
+              let data = xhr.response;
+
+              if(data==="ok"){
+                location.href='admin.php';
+              }
+              else{
+                errorText.style.display = "block";
+                errorText.textContent = data;
+              }
+          }
+      }
+    }
+    let formData = new FormData(form);
+    xhr.send(formData);
+}
+</script>
+</html>

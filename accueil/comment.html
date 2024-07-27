@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<style>
+    .elli{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+    :is(.comment_space,.add_comment){
+        margin-top: 20px;
+        padding-top: 10px;
+        width: 300px;
+        height: 400px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        border-radius: 5px;
+        justify-content: center;
+        align-items: center;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    }
+    .comment_space .comment{
+        width: 95%;
+        padding: 5px;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        height: 100%;
+        overflow-y: scroll;
+    }
+    .comment_space .comment::-webkit-scrollbar{
+        width: 0;
+    }
+    .comment_space .comment .entry_comment{
+        display: flex;
+        flex-direction: column;
+        border-radius: 3px;
+        padding-right: 3px;
+        padding-left: 3px;
+        background: rgba(255, 255, 255,0.6);
+        box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+    }
+    .comment_space .comment .entry_comment .time_send{
+        display: flex;
+       color: blue;
+       justify-content: flex-end;
+       margin-top: 10px;
+       font-size: 10px;
+    }
+    .comment_space .comment .entry_comment p{
+        width: 100%;
+        max-height: 55px;
+        overflow-y: scroll;
+    }
+    .comment_space .comment .entry_comment p::-webkit-scrollbar{
+        width: 0;
+    }
+    .comment_space .comment .entry_comment .entry_user{
+        display: flex;
+        justify-content: space-between;
+    }
+    .comment_space .comment .entry_comment .entry_user :is(.pers,.like){
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+    .comment_space .comment .entry_comment .entry_user :is(.pers,.like) :is(p,i){
+        color: #D2691E;
+        cursor: pointer;
+    }
+
+/* Messages */
+.add_comment form{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    gap: 25px;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+}
+.add_comment form input,textarea{
+    width: 70%;
+    padding: 10px;
+    border-radius: 18px;
+    border: none;
+    background: #ccc;
+    outline: none;
+    font-size: 15px;
+    color: #1e1e1e;
+}
+.add_comment form textarea{
+    height: 100px;
+    resize: none;
+}
+.add_comment form button{
+    padding: 15px;
+    border-radius: 15px;
+    border: none;
+    background: #D2691E;
+    color: #fff;
+    cursor: pointer;
+}
+.add_comment form button:hover{
+    background: #ccc;
+    color: #D2691E;
+}
+</style>
+<body>
+    <div class="container elli">
+        <div class="comment_space">
+            <div class="comment">
+                <div class="entry_comment" data-aos="fade-up" data-aos-duration="1300">
+                    <div class="time_send">
+                        <div>17/06/2024 18:25</div>
+                    </div>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta quo cupiditate beatae facilis vel possimus ut rem tempore, recusandae esse rerum pariatur, inventore blanditiis quaerat a eaque non quod maxime.</p>
+                    <div class="entry_user">
+                        <div class="pers">
+                            <img src="../admin/admin.jpeg" style="height: 20px; width: 20px;border-radius: 10px;">
+                            <p>Admin</p>
+                        </div>
+                        <div class="like" onclick="like()">
+                            <p>J'aime</p><i class="bx bxs-like"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+        <div class="add_comment">
+            <form action="" method="post">
+                <input type="text" value="" style="display: none;" name="id_book">
+                <input type="text" placeholder="Prénom" required name="nom">
+                <input type="text" placeholder="Email" required>
+                <textarea name="msg" placeholder="Votre commentaire..."></textarea>
+                <button type="submit" onclick="message()">Envoyer</button>
+            </form>
+        </div>
+    </div>
+    
+    
+
+
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+</body>
+<script>
+    function message() {
+        let form=document.querySelector("form");
+
+        let xhr = new XMLHttpRequest();
+  xhr.open("POST", '../php/session_destroy.php', true);
+  xhr.onload = ()=>{
+    if(xhr.readyState === XMLHttpRequest.DONE){
+        if(xhr.status === 200){
+            let data = xhr.response;
+            if (data === "ok") {
+              location.href='../index.php';
+            }
+            
+        }
+    }
+  }
+  let ess = new FormData(form);
+  xhr.send(ess);
+    }
+    function like(input) {
+        let bookdom = input;
+  let xhr = new XMLHttpRequest();
+  xhr.open("POST", '../php/like.php', true);
+  xhr.onload = ()=>{
+    if(xhr.readyState === XMLHttpRequest.DONE){
+        if(xhr.status === 200){
+          panier();
+          if (basket_field.classList.contains('show')) {
+            basket_field.classList.remove('show');
+        }else{
+            basket_field.classList.add('show');
+    
+        }
+            
+        }
+    }
+  }
+xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+xhr.send("bookdom=" + bookdom);
+    }
+    
+</script>
+</html>

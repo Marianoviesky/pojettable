@@ -1,0 +1,431 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+    .member{
+        position: fixed;
+        background: #fff;
+        display: none;
+        top: 95px;
+        right: 5px;
+        height: 430px;
+        width: 350px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px 12px 0px 0px;
+        gap: 17px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        z-index: 999;
+    }
+    .member .profil_asp{
+        height: 80px;
+        width: 80px;
+        border-radius: 50%;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    }
+    .member .access_button{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .member .access_button button{
+        padding: 10px;
+        border-radius: 10px;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        gap: 10px;
+        background: #D2691E;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    }
+    .member .access_button button:hover{
+        background: rgba(210, 105, 30,0.8);
+    }
+    .div-container {
+        position: absolute;
+      height: 100%;
+      width: 100%;
+      background-color: #f2f2f2;
+      border-radius: 12px 12px 0px 0px;
+      display: none;
+    }
+    .ess{
+        display: flex;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        text-align: center;
+        gap: 17px;
+        width: 100%;
+        height: 60px;
+         border-radius: 12px 12px 0px 0px;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    }
+    .ess button{
+        background: #D2691E;
+        display: flex;
+        align-items: center;
+        border: none;
+        border-radius: 10px;
+        padding: 3px;
+        color: #fff;
+    }
+
+    /* MESSAGE SPACE  */
+    .messages{
+        flex-direction: column;
+    }
+    
+    /* ZONE MESSAGES  */
+    .messages :is(.message_a,.message_area){
+        background: #ccc;
+        height: 100%;
+        overflow-y: scroll;
+        padding: 3px;
+    }
+    .messages :is(.message_a,.message_area)::-webkit-scrollbar{
+        width: 0;
+    }
+    .messages .message_area img{
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+    }
+    .messages .message_area .disqq{
+        display: grid;
+    }
+    .messages .message_area .disqq span{
+        font-size: 10px;
+    }
+    .messages .message_area p{
+        max-width: 220px;
+        padding: 5px;
+        background: #ccc;
+        word-wrap: break-word;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    }
+    .messages .message_area :is(.incoming_mess,.outgoing_mess){
+        display: flex;
+        align-items: flex-end;
+        gap: 3px;
+    }
+
+    .messages .message_area .incoming_mess{
+        justify-content: flex-start;
+    }
+    .messages .message_area .incoming_mess p{
+        background: #fff;
+        border-radius: 5px 5px 5px 0;
+    }
+    .messages .message_area .outgoing_mess{
+        justify-content: flex-end;
+    }
+    .messages .message_area .outgoing_mess p{
+        background: #D2691E;
+        color: #fff;
+        border-radius: 5px 5px 0 5px;
+    }
+
+    /* FIN ZONE MESSAGES  */
+    .messages form{
+        padding: 2px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 45px;
+        gap: 8px;
+    }
+    .messages form input{
+        padding: 5px;
+        width: 100%;
+        outline: none;
+        border: none;
+        border-radius: 5px;
+        font-size: 15px;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    }
+    .messages form button{
+        font-size: 22px;
+        border-radius: 0 18px 18px 0;
+        border: none;
+        width: 45px;
+        height: 30px;
+        color: #D2691E;
+        background: #ccc;
+        transition: all .3s ease-in-out;
+    }
+    .messages form button:hover{
+        background: #D2691E;
+        color: #fff;
+    }
+    /* END MESSAGE AREA  */
+
+
+    /* NOTIFICATION AREA  */
+    .notification{
+        flex-direction: column;
+        text-align: center;
+    }
+    .part{
+        display: none;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        height: 100%;
+        color: #fff;
+    }
+    .part h2{
+        color: #fff;
+    }
+    .notification b{
+        margin-top: 10px;
+    }
+    .notification .center_notification{
+        padding: 5px;
+        margin-top: 25px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        overflow-y: scroll;
+    }
+    .notification .center_notification::-webkit-scrollbar{
+        width: 0;
+    }
+    .notification .center_notification img{
+        height: 100px;
+        width: 90px;
+    }
+    .notification .center_notification p{
+        height: 100px;
+        width: 100%;
+        overflow: hidden;
+    }
+    .notification .center_notification a{
+        padding: 8px;
+        text-align: center;
+        text-decoration: none;
+        color: #D2691E;
+        background: #cccE;
+        border-radius: 15px;
+        transition: all .3s ease-in-out;
+    }
+    .notification .center_notification a:hover{
+        background: #D2691E;
+        color: #fff;
+    }
+    .notification .center_notification a:active{
+        background: #ccc;
+    }
+
+
+
+    /* END NOTIFICATION AREA  */
+
+    /* ESPACE CLIENT  */
+
+    .emprunt_zone{
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+    }
+    .emprunt_zone .le_res{
+        padding: 5px;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+    .emprunt_zone .espace_desti{
+        display: flex;
+        gap: 5px;
+        padding-top: 10px;
+        width: 100%;
+    }
+    .emprunt_zone .espace_desti button{
+        border-radius: 5px 5px 0 0;
+        color: #fff;
+        background: #D2691E;
+        border: none;
+        width: 100%;
+    }
+    .emprunt_zone .espace_livre_emprunt{
+      display: grid;
+      align-items: center;
+      justify-content: center;
+      max-height: 317px;
+      flex-direction: column;
+      overflow-y: scroll;
+    }
+    .emprunt_zone .espace_livre_emprunt::-webkit-scrollbar{
+        width: 0;
+    }
+    .emprunt_zone .espace_livre_emprunt .les_livres_ep{
+        background: #ccc;
+        text-align: center;
+        display: flex;
+        gap: 5px;
+        align-items: center;
+        margin-top: 5px;
+        padding-top: 5px;
+        padding-left: 2px;
+        padding-bottom: 5px;
+        width: 100%;
+        height: 23%;
+        overflow: hidden;
+    }
+    .emprunt_zone .espace_livre_emprunt .les_livres_ep :is(img,i,p){
+        overflow: hidden;
+        width: 100%;
+    }
+    .emprunt_zone .espace_livre_emprunt .les_livres_ep img{
+        height: 72px;
+    }
+    /* FIN ESPACE CLIENT  */
+
+    button{
+        cursor: pointer;
+    }
+    .click_mee{
+        position: absolute;
+        right: 60px;
+        top: 21px;
+        margin-right: 5px;
+        font-size: 35px;
+        font-weight: bold;
+        height: 35px;
+        width: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        color: #D2691E;
+        background: #fff;
+    }
+
+
+    .suitebx{
+        background: #D2691E;
+        display: flex;
+        align-items: center;
+        border: none;
+        border-radius: 10px;
+        padding: 3px;
+        color: #fff;
+    }
+    .span{
+        display: none;
+        position: absolute;
+        right: 20px;
+        background: #1e1e1e;
+        padding: 3px;
+        color: #fff;
+        font-size: 12px;
+        width: 100px;
+        z-index: 2;
+    }
+    .click_mee:hover > .span{
+        display: block;
+    }
+
+    .message_a{
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+    }
+    .message_a :is(i,strong){
+        color: #1e1e1e;
+        font-weight: bold;
+    }
+    /* ZONE RECEPTION NOTIFICATION  */
+
+
+
+    .concatenate{
+        display: none;
+        width: 100%;
+        height: 500px;
+        position: fixed;
+        top: 25px;
+        right: 18px;
+        overflow-x: hidden;
+        z-index: 3;
+    }
+    .concatenate .lement{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 5px;
+        background: #fff;
+        border-radius: 10px;
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        overflow-x: hidden;
+        transform: translateX(calc(100% + 30px));
+        transition: all .3s ease-in-out;
+        border-left: 4px solid #D2691E;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    }
+    .concatenate .lement.tre{
+        transform: translateX(0);
+    }
+    .concatenate .lement .spani{
+        position: absolute;
+        border-bottom: 3px solid #D2691E;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+    }
+    .concatenate .lement .spani.tre{
+
+        animation:progress 5s linear;
+    }
+   
+    .concatenate .lement i{
+        font-size: 23px;
+        color:#D2691E;
+        background: #fff;
+        border-radius: 50%;
+    }
+    .concatenate .lement .centaine{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+    }
+    .concatenate .lement .centaine p{
+        color: #D2691E;
+        font-weight: bold;
+        font-size: 17px;
+
+    }
+    .concatenate .lement .centaine small{
+        color: #1e1e1e;
+        font-size: 15px;
+    }
+    @keyframes progress{
+        100%{
+            right: 100%;
+        }
+    }
+
+    /* FIN NOTIF  */
+
+    @media (min-width: 767px) {
+        .click_mee{
+            top: 32px;
+            right: 40px;
+        }
+        .span{
+            right: -50px;
+            bottom: -42px;
+        }
+    }
